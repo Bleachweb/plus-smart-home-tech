@@ -1,6 +1,5 @@
 package ru.practicum.model.sensor;
 
-
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
