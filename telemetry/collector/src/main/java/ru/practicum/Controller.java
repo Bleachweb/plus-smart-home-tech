@@ -29,5 +29,4 @@ public class Controller {
         log.info("Input hub event: {}", hubEvent);
         collectorService.collectHubEvent(hubEvent);
     }
-
 }
