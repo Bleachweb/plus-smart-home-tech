@@ -30,5 +30,4 @@ public class Controller {
         collectorService.collectHubEvent(hubEvent);
     }
 
-
 }
