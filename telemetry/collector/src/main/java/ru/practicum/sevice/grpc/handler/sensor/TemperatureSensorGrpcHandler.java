@@ -1,11 +1,9 @@
 package ru.practicum.sevice.grpc.handler.sensor;
 
 import lombok.RequiredArgsConstructor;
-import org.checkerframework.checker.units.qual.Temperature;
 import org.springframework.stereotype.Component;
 import ru.practicum.model.sensor.TemperatureSensorEvent;
 import ru.practicum.sevice.kafka.KafkaService;
-import ru.practicum.sevice.kafka.handler.sensor.TemperatureSensorEventHandler;
 import ru.yandex.practicum.grpc.telemetry.event.SensorEventProto;
 
 import java.time.Instant;
