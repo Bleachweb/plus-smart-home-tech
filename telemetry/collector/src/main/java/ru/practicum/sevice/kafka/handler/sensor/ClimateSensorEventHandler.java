@@ -3,8 +3,8 @@ package ru.practicum.sevice.kafka.handler.sensor;
 import org.springframework.stereotype.Component;
 import ru.practicum.model.sensor.ClimateSensorEvent;
 import ru.practicum.model.sensor.SensorEventType;
-import ru.yandex.practicum.kafka.telemetry.event.ClimateSensorAvro;
-import ru.yandex.practicum.kafka.telemetry.event.SensorEventAvro;
+import ru.practicum.kafka.telemetry.event.ClimateSensorAvro;
+import ru.practicum.kafka.telemetry.event.SensorEventAvro;
 
 @Component
 public class ClimateSensorEventHandler implements SensorEventHandler<ClimateSensorEvent> {

@@ -3,8 +3,8 @@ package ru.practicum.sevice.kafka.handler.sensor;
 import org.springframework.stereotype.Component;
 import ru.practicum.model.sensor.SensorEventType;
 import ru.practicum.model.sensor.SwitchSensorEvent;
-import ru.yandex.practicum.kafka.telemetry.event.SensorEventAvro;
-import ru.yandex.practicum.kafka.telemetry.event.SwitchSensorAvro;
+import ru.practicum.kafka.telemetry.event.SensorEventAvro;
+import ru.practicum.kafka.telemetry.event.SwitchSensorAvro;
 
 @Component
 public class SwitchSensorEventHandler implements SensorEventHandler<SwitchSensorEvent> {

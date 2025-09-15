@@ -11,8 +11,8 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.springframework.beans.factory.annotation.Value;
 import ru.practicum.sevice.kafka.handler.hub.HubEventHandlerRegistry;
 import ru.practicum.sevice.kafka.handler.sensor.SensorEventRegistry;
-import ru.yandex.practicum.kafka.telemetry.event.HubEventAvro;
-import ru.yandex.practicum.kafka.telemetry.event.SensorEventAvro;
+import ru.practicum.kafka.telemetry.event.HubEventAvro;
+import ru.practicum.kafka.telemetry.event.SensorEventAvro;
 
 
 @Service

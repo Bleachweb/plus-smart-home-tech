@@ -4,8 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.practicum.sevice.grpc.handler.hub.HubEventGrpcHandler;
 import ru.practicum.sevice.grpc.handler.sensor.SensorEventGrpcHandler;
-import ru.yandex.practicum.grpc.telemetry.event.HubEventProto;
-import ru.yandex.practicum.grpc.telemetry.event.SensorEventProto;
+import ru.practicum.grpc.telemetry.event.HubEventProto;
+import ru.practicum.grpc.telemetry.event.SensorEventProto;
 
 import java.util.List;
 import java.util.Map;

@@ -3,8 +3,8 @@ package ru.practicum.sevice.kafka.handler.sensor;
 import org.springframework.stereotype.Component;
 import ru.practicum.model.sensor.LightSensorEvent;
 import ru.practicum.model.sensor.SensorEventType;
-import ru.yandex.practicum.kafka.telemetry.event.LightSensorAvro;
-import ru.yandex.practicum.kafka.telemetry.event.SensorEventAvro;
+import ru.practicum.kafka.telemetry.event.LightSensorAvro;
+import ru.practicum.kafka.telemetry.event.SensorEventAvro;
 
 @Component
 public class LightSensorEventHandler implements SensorEventHandler<LightSensorEvent> {

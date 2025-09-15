@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.practicum.model.sensor.SensorEvent;
 import ru.practicum.model.sensor.SensorEventType;
-import ru.yandex.practicum.kafka.telemetry.event.SensorEventAvro;
+import ru.practicum.kafka.telemetry.event.SensorEventAvro;
 
 import java.util.HashMap;
 import java.util.List;

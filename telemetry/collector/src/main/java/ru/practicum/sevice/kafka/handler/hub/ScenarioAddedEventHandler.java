@@ -3,10 +3,10 @@ package ru.practicum.sevice.kafka.handler.hub;
 import org.springframework.stereotype.Component;
 import ru.practicum.model.hub.event.HubEventType;
 import ru.practicum.model.hub.event.scenario.ScenarioAddedEvent;
-import ru.yandex.practicum.kafka.telemetry.event.DeviceActionAvro;
-import ru.yandex.practicum.kafka.telemetry.event.HubEventAvro;
-import ru.yandex.practicum.kafka.telemetry.event.ScenarioAddedEventAvro;
-import ru.yandex.practicum.kafka.telemetry.event.ScenarioConditionAvro;
+import ru.practicum.kafka.telemetry.event.DeviceActionAvro;
+import ru.practicum.kafka.telemetry.event.HubEventAvro;
+import ru.practicum.kafka.telemetry.event.ScenarioAddedEventAvro;
+import ru.practicum.kafka.telemetry.event.ScenarioConditionAvro;
 import ru.practicum.utils.MappingUtils;
 
 import java.util.List;

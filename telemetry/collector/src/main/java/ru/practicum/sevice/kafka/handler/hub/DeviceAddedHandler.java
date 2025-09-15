@@ -4,8 +4,8 @@ import org.springframework.stereotype.Component;
 import ru.practicum.model.hub.event.HubEventType;
 import ru.practicum.model.hub.event.device.DeviceAddedEvent;
 import ru.practicum.utils.MappingUtils;
-import ru.yandex.practicum.kafka.telemetry.event.DeviceAddedEventAvro;
-import ru.yandex.practicum.kafka.telemetry.event.HubEventAvro;
+import ru.practicum.kafka.telemetry.event.DeviceAddedEventAvro;
+import ru.practicum.kafka.telemetry.event.HubEventAvro;
 
 @Component
 public class DeviceAddedHandler implements HubEventHandler<DeviceAddedEvent> {

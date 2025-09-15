@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.practicum.model.hub.event.HubEvent;
 import ru.practicum.model.hub.event.HubEventType;
-import ru.yandex.practicum.kafka.telemetry.event.HubEventAvro;
+import ru.practicum.kafka.telemetry.event.HubEventAvro;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,10 +1,10 @@
 package ru.practicum.utils;
 
 
+import ru.practicum.grpc.telemetry.event.*;
+import ru.practicum.kafka.telemetry.event.*;
 import ru.practicum.model.hub.event.device.DeviceType;
 import ru.practicum.model.hub.event.scenario.*;
-import ru.yandex.practicum.grpc.telemetry.event.*;
-import ru.yandex.practicum.kafka.telemetry.event.*;
 
 
 public class MappingUtils {

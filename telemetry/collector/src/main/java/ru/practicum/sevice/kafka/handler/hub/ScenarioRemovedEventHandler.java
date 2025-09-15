@@ -3,8 +3,8 @@ package ru.practicum.sevice.kafka.handler.hub;
 import org.springframework.stereotype.Component;
 import ru.practicum.model.hub.event.HubEventType;
 import ru.practicum.model.hub.event.scenario.ScenarioRemovedEvent;
-import ru.yandex.practicum.kafka.telemetry.event.HubEventAvro;
-import ru.yandex.practicum.kafka.telemetry.event.ScenarioRemovedEventAvro;
+import ru.practicum.kafka.telemetry.event.HubEventAvro;
+import ru.practicum.kafka.telemetry.event.ScenarioRemovedEventAvro;
 
 @Component
 public class ScenarioRemovedEventHandler implements HubEventHandler<ScenarioRemovedEvent> {

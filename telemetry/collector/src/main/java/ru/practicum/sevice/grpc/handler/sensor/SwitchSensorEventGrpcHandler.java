@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.practicum.model.sensor.SwitchSensorEvent;
 import ru.practicum.sevice.kafka.KafkaService;
-import ru.yandex.practicum.grpc.telemetry.event.SensorEventProto;
+import ru.practicum.grpc.telemetry.event.SensorEventProto;
 
 import java.time.Instant;
 

@@ -3,8 +3,8 @@ package ru.practicum.sevice.kafka.handler.hub;
 import org.springframework.stereotype.Component;
 import ru.practicum.model.hub.event.HubEventType;
 import ru.practicum.model.hub.event.device.DeviceRemovedEvent;
-import ru.yandex.practicum.kafka.telemetry.event.DeviceRemovedEventAvro;
-import ru.yandex.practicum.kafka.telemetry.event.HubEventAvro;
+import ru.practicum.kafka.telemetry.event.DeviceRemovedEventAvro;
+import ru.practicum.kafka.telemetry.event.HubEventAvro;
 
 @Component
 public class DeviceRemovedEventHandler implements HubEventHandler<DeviceRemovedEvent> {

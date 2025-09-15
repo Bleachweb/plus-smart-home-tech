@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import ru.practicum.model.hub.event.scenario.ScenarioAddedEvent;
 import ru.practicum.sevice.kafka.KafkaService;
 import ru.practicum.utils.MappingUtils;
-import ru.yandex.practicum.grpc.telemetry.event.HubEventProto;
+import ru.practicum.grpc.telemetry.event.HubEventProto;
 
 import java.time.Instant;
 
