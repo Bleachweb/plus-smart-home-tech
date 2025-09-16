@@ -2,9 +2,9 @@ package ru.practicum.utils;
 
 import ru.practicum.entity.ActionEntity;
 import com.google.protobuf.Timestamp;
-import ru.practicum.grpc.telemetry.event.ActionTypeProto;
-import ru.practicum.grpc.telemetry.event.DeviceActionProto;
-import ru.practicum.kafka.telemetry.event.ActionTypeAvro;
+import ru.yandex.practicum.grpc.telemetry.event.ActionTypeProto;
+import ru.yandex.practicum.grpc.telemetry.event.DeviceActionProto;
+import ru.yandex.practicum.kafka.telemetry.event.ActionTypeAvro;
 
 import java.time.Instant;
 

@@ -5,8 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import ru.practicum.entity.*;
-import ru.practicum.kafka.telemetry.event.ScenarioAddedEventAvro;
 import ru.practicum.repository.*;
+import ru.yandex.practicum.kafka.telemetry.event.ScenarioAddedEventAvro;
 
 import java.time.Instant;
 import java.util.List;

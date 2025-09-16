@@ -1,9 +1,8 @@
 package ru.practicum.service;
 
-
-import ru.practicum.kafka.telemetry.event.SensorEventAvro;
-import ru.practicum.kafka.telemetry.event.SensorStateAvro;
-import ru.practicum.kafka.telemetry.event.SensorsSnapshotAvro;
+import ru.yandex.practicum.kafka.telemetry.event.SensorEventAvro;
+import ru.yandex.practicum.kafka.telemetry.event.SensorStateAvro;
+import ru.yandex.practicum.kafka.telemetry.event.SensorsSnapshotAvro;
 
 import java.util.HashMap;
 import java.util.Map;

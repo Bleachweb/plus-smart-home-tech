@@ -2,8 +2,8 @@ package ru.practicum.service.handler;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.practicum.kafka.telemetry.event.ScenarioRemovedEventAvro;
 import ru.practicum.repository.ScenarioRepository;
+import ru.yandex.practicum.kafka.telemetry.event.ScenarioRemovedEventAvro;
 
 import java.time.Instant;
 

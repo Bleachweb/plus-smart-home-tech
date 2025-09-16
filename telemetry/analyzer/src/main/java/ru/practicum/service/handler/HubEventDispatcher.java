@@ -2,7 +2,7 @@ package ru.practicum.service.handler;
 
 import org.apache.avro.specific.SpecificRecordBase;
 import org.springframework.stereotype.Component;
-import ru.practicum.kafka.telemetry.event.HubEventAvro;
+import ru.yandex.practicum.kafka.telemetry.event.HubEventAvro;
 
 import java.util.HashMap;
 import java.util.List;
