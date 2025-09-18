@@ -38,7 +38,8 @@ public class ScenarioAddedEventHandler implements HubEventHandler<ScenarioAddedE
                 .map(avroCondition -> ConditionEntity.builder()
                         .type(avroCondition.getType())
                         .value(switch (avroCondition.getValue()) {
-                            case null -> null;
+                            case null -> throw new IllegalArgumentException(
+                                    "Value type cannot be null");
                             case Integer intValue -> intValue;
                             case Boolean boolValue -> boolValue ? 1 : 0;
                             default -> throw new IllegalArgumentException(

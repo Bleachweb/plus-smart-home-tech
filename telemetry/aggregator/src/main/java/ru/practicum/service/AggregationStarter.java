@@ -24,7 +24,7 @@ import java.util.Optional;
 public class AggregationStarter {
 
     private final KafkaProducer<String, SpecificRecordBase> producer;
-    private final KafkaConsumer<String, SpecificRecordBase> consumer;
+    private final KafkaConsumer<String, SensorEventAvro> consumer;
 
     private final SnapshotStateHolder snapshotStateHolder = new SnapshotStateHolder();
 
@@ -46,15 +46,10 @@ public class AggregationStarter {
             consumer.subscribe(List.of(sensorTopic));
 
             while (true) {
+                ConsumerRecords<String, SensorEventAvro> records = consumer.poll(Duration.ofMillis(100));
 
-                ConsumerRecords<String, SpecificRecordBase> records = consumer.poll(Duration.ofMillis(100));
-
-                for (ConsumerRecord<String, SpecificRecordBase> record : records) {
-
-                    if(!(record.value() instanceof SensorEventAvro event)) {
-                        log.warn("Unexpected record type: {}", record.value().getClass().getSimpleName());
-                        continue;
-                    }
+                for (ConsumerRecord<String, SensorEventAvro> record : records) {
+                    SensorEventAvro event = record.value();
 
                     Optional<SensorsSnapshotAvro> updated = snapshotStateHolder.updateState(event);
                     updated.ifPresent(snapshot -> {

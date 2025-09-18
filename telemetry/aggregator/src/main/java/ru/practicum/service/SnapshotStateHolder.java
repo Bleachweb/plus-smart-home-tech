@@ -10,7 +10,11 @@ import java.util.Optional;
 
 public class SnapshotStateHolder {
 
-    private final Map<String, SensorsSnapshotAvro> snapshots = new HashMap<>();
+    private final Map<String, SensorsSnapshotAvro> snapshots;
+
+    public SnapshotStateHolder() {
+        this.snapshots = new HashMap<>();
+    }
 
     public Optional<SensorsSnapshotAvro> updateState(SensorEventAvro event) {
         String hubId = event.getHubId();
