@@ -7,6 +7,8 @@ import ru.practicum.entity.*;
 import ru.practicum.repository.ScenarioActionLinkRepository;
 import ru.practicum.repository.ScenarioConditionLinkRepository;
 import ru.practicum.repository.ScenarioRepository;
+import ru.practicum.service.sensor.SensorDataAdapter;
+import ru.practicum.service.sensor.SensorDataAdapterFactory;
 import ru.practicum.utils.MappingUtils;
 import ru.yandex.practicum.grpc.telemetry.event.DeviceActionRequestProto;
 import ru.yandex.practicum.kafka.telemetry.event.*;
@@ -29,10 +31,8 @@ public class ScenarioEvaluatorServiceImpl implements ScenarioEvaluatorService {
 
         log.info("Analyzer:ScenarioEvaluatorService - sensorsSnapshotAvro: {}", sensorsSnapshotAvro);
 
-
         List<ScenarioEntity> scenarioEntities = scenarioRepository.findByHubId(sensorsSnapshotAvro.getHubId());
         List<DeviceActionRequestProto> results = new ArrayList<>();
-
 
         for (ScenarioEntity scenarioEntity : scenarioEntities) {
             List<ScenarioConditionLink> conditionLinks = scenarioConditionLinkRepository.findByScenarioId(scenarioEntity.getId());
@@ -62,16 +62,12 @@ public class ScenarioEvaluatorServiceImpl implements ScenarioEvaluatorService {
     }
 
     private boolean conditionMatch(ScenarioConditionLink cond, SensorsSnapshotAvro sensorsSnapshotAvro) {
-
-
         String sensorId = cond.getSensor().getId();
         ConditionEntity condition = cond.getCondition();
         log.debug("ConditionMatch");
         log.debug("SensorID: {}", sensorId);
         log.debug("Condition: {}", condition);
         log.debug("ScenarioConditionLink: {}", cond);
-
-
 
         SensorStateAvro sensorStateAvro = sensorsSnapshotAvro.getSensorsState().get(sensorId);
 
@@ -81,55 +77,15 @@ public class ScenarioEvaluatorServiceImpl implements ScenarioEvaluatorService {
         }
 
         Object data = sensorStateAvro.getData();
+        SensorDataAdapter adapter = SensorDataAdapterFactory.getAdapter(data);
 
         return switch (condition.getType()) {
-            case TEMPERATURE -> {
-                if (data instanceof TemperatureSensorAvro temp) {
-                    yield matchCondition(temp.getTemperatureC(), condition);
-                } else if (data instanceof ClimateSensorAvro climate) {
-                    yield matchCondition(climate.getTemperatureC(), condition);
-                } else {
-                    yield false;
-                }
-            }
-            case HUMIDITY -> {
-                if (data instanceof ClimateSensorAvro climate) {
-                    yield matchCondition(climate.getHumidity(), condition);
-                } else {
-                    yield false;
-                }
-            }
-            case CO2LEVEL -> {
-                if (data instanceof ClimateSensorAvro climate) {
-                    yield matchCondition(climate.getCo2Level(), condition);
-                } else {
-                    yield false;
-                }
-            }
-            case LUMINOSITY -> {
-                if (data instanceof LightSensorAvro light) {
-                    yield matchCondition(light.getLuminosity(), condition);
-                } else {
-                    yield false;
-                }
-            }
-            case MOTION -> {
-                if (data instanceof MotionSensorAvro motion) {
-                    Integer value = motion.getMotion() ? 1 : 0;
-                    yield matchCondition(value, condition);
-                } else {
-                    yield false;
-                }
-            }
-            case SWITCH -> {
-                if (data instanceof SwitchSensorAvro sw) {
-                    Integer value = sw.getState() ? 1 : 0;
-                    yield matchCondition(value, condition);
-                } else {
-                    yield false;
-                }
-            }
-
+            case TEMPERATURE -> adapter.getTemperature().map(t -> matchCondition(t, condition)).orElse(false);
+            case HUMIDITY -> adapter.getHumidity().map(h -> matchCondition(h, condition)).orElse(false);
+            case CO2LEVEL -> adapter.getCo2Level().map(c -> matchCondition(c, condition)).orElse(false);
+            case LUMINOSITY -> adapter.getLuminosity().map(l -> matchCondition(l, condition)).orElse(false);
+            case MOTION -> adapter.getMotion().map(m -> matchCondition(m ? 1 : 0, condition)).orElse(false);
+            case SWITCH -> adapter.getSwitchState().map(s -> matchCondition(s ? 1 : 0, condition)).orElse(false);
         };
     }
 
@@ -140,6 +96,4 @@ public class ScenarioEvaluatorServiceImpl implements ScenarioEvaluatorService {
             case LOWER_THAN -> value < condition.getValue();
         };
     }
-
-
 }
