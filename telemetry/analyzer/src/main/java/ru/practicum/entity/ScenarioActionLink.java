@@ -45,6 +45,5 @@ public class ScenarioActionLink {
         private Long scenarioId;
         private String sensorId;
         private Long actionId;
-
     }
 }
