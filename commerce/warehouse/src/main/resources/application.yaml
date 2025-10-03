@@ -1,6 +1,6 @@
 spring:
   application:
-    name: analyzer
+    name: warehouse
   config:
     import: "configserver:"
   cloud:
@@ -12,6 +12,9 @@ spring:
       retry:
         use-random-policy: true
         max-interval: 6000
+
+server:
+  port: 0
 
 eureka:
   client:
