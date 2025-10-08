@@ -15,17 +15,18 @@ public class ErrorResponse {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime timestamp;
 
-    public ErrorResponse(HttpStatus status, String reason, List<String> message) {
-        this.status = status.value();
+    public ErrorResponse(int status, String reason, List<String> message, LocalDateTime timestamp) {
+        this.status = status;
         this.reason = reason;
         this.message = message;
-        this.timestamp = LocalDateTime.now();
+        this.timestamp = timestamp;
+    }
+
+    public ErrorResponse(HttpStatus status, String reason, List<String> message) {
+        this(status.value(), reason, message, LocalDateTime.now());
     }
 
     public ErrorResponse(HttpStatus status, String reason, String message) {
-        this.status = status.value();
-        this.reason = reason;
-        this.message = List.of(message);
-        this.timestamp = LocalDateTime.now();
+        this(status.value(), reason, List.of(message), LocalDateTime.now());
     }
 }

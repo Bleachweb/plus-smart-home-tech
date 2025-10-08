@@ -92,19 +92,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public ShoppingCartDto changeQuantityShoppingCart(String username, ChangeProductQuantityRequest request) {
         Cart cart = findShoppingCart(username);
-        List<CartProduct> cartProducts = cart.getProducts();
 
-        for (CartProduct cp : cartProducts) {
-            if (cp.getProductId().equals(UUID.fromString(request.getProductId()))) {
-                cp.setQuantity(request.getNewQuantity());
-                break;
-            }
-        }
+        cart.getProducts().stream()
+                .filter(cp -> cp.getProductId().equals(UUID.fromString(request.getProductId())))
+                .findFirst()
+                .ifPresent(cp -> cp.setQuantity(request.getNewQuantity()));
 
         shoppingCartRepository.save(cart);
-
         return Mapper.toShoppingCartDto(cart);
-
     }
 
     private Cart findShoppingCart(String username) {

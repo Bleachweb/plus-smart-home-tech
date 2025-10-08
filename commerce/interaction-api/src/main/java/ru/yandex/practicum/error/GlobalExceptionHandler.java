@@ -12,6 +12,7 @@ import ru.yandex.practicum.exception.NotAuthorizedUserException;
 import ru.yandex.practicum.exception.NotFoundException;
 import ru.yandex.practicum.exception.ProductInShoppingCartLowQuantityInWarehouse;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -27,14 +28,16 @@ public class GlobalExceptionHandler {
                         error.getField(),
                         error.getDefaultMessage(),
                         Objects.toString(error.getRejectedValue(), "null")))
-                .collect(Collectors.toList());
+                .toList();
 
         List<String> globalErrors = e.getBindingResult().getGlobalErrors().stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .toList();
 
-        fieldErrors.addAll(globalErrors);
-        return new ErrorResponse(HttpStatus.BAD_REQUEST, "Incorrectly made request.", fieldErrors);
+        List<String> allErrors = new ArrayList<>(fieldErrors);
+        allErrors.addAll(globalErrors);
+
+        return new ErrorResponse(HttpStatus.BAD_REQUEST, "Incorrectly made request.", allErrors);
     }
 
     @ExceptionHandler
@@ -55,7 +58,6 @@ public class GlobalExceptionHandler {
         return new ErrorResponse(HttpStatus.NOT_FOUND, "The required object was not found.", e.getMessage());
     }
 
-
     @ExceptionHandler
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ErrorResponse onNotAuthorizedException(NotAuthorizedUserException e) {
@@ -73,6 +75,4 @@ public class GlobalExceptionHandler {
     public ErrorResponse onProductInShoppingCartLowQuantityInWarehouseException(ProductInShoppingCartLowQuantityInWarehouse e) {
         return new ErrorResponse(HttpStatus.BAD_REQUEST, "Low quantity of product in shopping cart ", e.getMessage());
     }
-
-
 }
