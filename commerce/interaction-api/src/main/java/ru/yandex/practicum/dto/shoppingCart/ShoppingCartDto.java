@@ -1,10 +1,10 @@
 package ru.yandex.practicum.dto.shoppingCart;
 
-
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Map;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -13,6 +13,6 @@ import java.util.Map;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @ToString
 public class ShoppingCartDto {
-    String shoppingCartId;
-    Map<String, Integer> products;
+    UUID shoppingCartId;
+    Map<UUID, Integer> products;
 }

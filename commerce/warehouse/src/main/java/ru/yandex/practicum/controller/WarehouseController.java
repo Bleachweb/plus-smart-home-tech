@@ -2,14 +2,15 @@ package ru.yandex.practicum;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.yandex.practicum.api.WarehouseApi;
 import ru.yandex.practicum.dto.shoppingCart.ShoppingCartDto;
-import ru.yandex.practicum.dto.warehouse.AddProductToWarehouseRequest;
-import ru.yandex.practicum.dto.warehouse.AddressDto;
-import ru.yandex.practicum.dto.warehouse.BookedProductsDto;
-import ru.yandex.practicum.dto.warehouse.NewProductInWarehouseRequest;
+import ru.yandex.practicum.dto.warehouse.*;
 import ru.yandex.practicum.service.WarehouseService;
+
+import java.util.Map;
+import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -47,5 +48,28 @@ public class WarehouseController implements WarehouseApi {
         AddressDto addressDto = warehouseService.getAddress();
         log.info("Get address: {}", addressDto);
         return addressDto;
+    }
+
+    @Override
+    public void shippedProducts(ShippedToDeliveryRequest request) {
+        log.info("Shipped to delivery request: {}", request);
+        warehouseService.shippedProducts(request);
+        log.info("Shipped to delivery request successful");
+    }
+
+    @Override
+    public void returnProducts(Map<UUID, Integer> products) {
+        log.info("Returned products map: {}", products);
+        warehouseService.returnProducts(products);
+        log.info("Returned products map successful");
+
+    }
+
+    @Override
+    public BookedProductsDto assemblyProducts(AssemblyProductsForOrderRequest request) {
+        log.info("Assembly product for order request: {}", request);
+        BookedProductsDto bookedProductsDto = warehouseService.assemblyProducts(request);
+        log.info("BookedProductsDto: {}", bookedProductsDto);
+        return bookedProductsDto;
     }
 }

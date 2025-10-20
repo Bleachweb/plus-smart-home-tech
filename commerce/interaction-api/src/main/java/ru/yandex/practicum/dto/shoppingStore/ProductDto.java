@@ -6,6 +6,8 @@ import ru.yandex.practicum.dto.shoppingStore.enums.ProductCategory;
 import ru.yandex.practicum.dto.shoppingStore.enums.ProductState;
 import ru.yandex.practicum.dto.shoppingStore.enums.QuantityState;
 
+import java.util.UUID;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,7 +15,7 @@ import ru.yandex.practicum.dto.shoppingStore.enums.QuantityState;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @ToString
 public class ProductDto {
-    String productId;
+    UUID productId;
     String productName;
     String description;
     String imageSrc;

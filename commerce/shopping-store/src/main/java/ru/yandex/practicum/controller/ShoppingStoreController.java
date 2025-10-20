@@ -1,4 +1,4 @@
-package ru.yandex.practicum;
+package ru.yandex.practicum.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +10,8 @@ import ru.yandex.practicum.dto.shoppingStore.ProductDto;
 import ru.yandex.practicum.dto.shoppingStore.enums.ProductCategory;
 import ru.yandex.practicum.dto.shoppingStore.enums.QuantityState;
 import ru.yandex.practicum.service.ShoppingStoreService;
+
+import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -28,7 +30,7 @@ public class ShoppingStoreController implements ShoppingStoreApi {
     }
 
     @Override
-    public ProductDto getProduct(String id) {
+    public ProductDto getProduct(UUID id) {
         log.info("getProduct with id {}", id);
         ProductDto productDto = shoppingStoreService.getProduct(id);
         log.info("getProduct returned {}", productDto);
@@ -44,15 +46,14 @@ public class ShoppingStoreController implements ShoppingStoreApi {
     }
 
     @Override
-    public void removeProductFromStore(String productId) {
+    public void removeProductFromStore(UUID productId) {
         log.info("removeProductFromStore with id {}", productId);
-        productId = productId.replaceAll("\"", "").trim();
         shoppingStoreService.removeProductFromStore(productId);
         log.info("removeProductFromStore was removed");
     }
 
     @Override
-    public void quantityState(String productId, QuantityState quantityState) {
+    public void quantityState(UUID productId, QuantityState quantityState) {
         log.info("quantityState for productId {} ", productId);
         log.info("quantityState {}", quantityState);
         shoppingStoreService.quantityState(productId, quantityState);

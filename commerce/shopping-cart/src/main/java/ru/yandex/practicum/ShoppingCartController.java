@@ -2,6 +2,7 @@ package ru.yandex.practicum;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.yandex.practicum.api.ShoppingCartApi;
 import ru.yandex.practicum.dto.shoppingCart.ChangeProductQuantityRequest;
@@ -10,6 +11,7 @@ import ru.yandex.practicum.service.ShoppingCartService;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -22,15 +24,15 @@ public class ShoppingCartController implements ShoppingCartApi {
     public ShoppingCartDto getShoppingCart(String username) {
         log.info("Get shopping cart for {}", username);
         ShoppingCartDto shoppingCart = shoppingCartService.getShoppingCart(username);
-        log.info("Received shopping cart {}", shoppingCart);
+        log.info("Get shopping cart {}", shoppingCart);
         return shoppingCart;
     }
 
     @Override
-    public ShoppingCartDto updateShoppingCart(String username, Map<String, Integer> products) {
+    public ShoppingCartDto updateShoppingCart(String username, Map<UUID, Integer> products) {
         log.info("Update shopping cart for {}. Updated products {}", username, products);
         ShoppingCartDto shoppingCart = shoppingCartService.updateShoppingCart(username, products);
-        log.info("Updated shopping cart {}", shoppingCart);
+        log.info("Update shopping cart {}", shoppingCart);
         return shoppingCart;
     }
 

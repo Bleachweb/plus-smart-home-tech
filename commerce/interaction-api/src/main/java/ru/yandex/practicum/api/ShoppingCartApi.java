@@ -6,6 +6,7 @@ import ru.yandex.practicum.dto.shoppingCart.ShoppingCartDto;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 
 public interface ShoppingCartApi {
@@ -14,7 +15,7 @@ public interface ShoppingCartApi {
 
     @PutMapping("/api/v1/shopping-cart")
     ShoppingCartDto updateShoppingCart(@RequestParam String username,
-                                       @RequestBody Map<String, Integer> products
+                                       @RequestBody Map<UUID, Integer> products
     );
 
     @DeleteMapping("/api/v1/shopping-cart")
@@ -29,8 +30,5 @@ public interface ShoppingCartApi {
     ShoppingCartDto changeQuantityShoppingCart(@RequestParam String username,
                                                @RequestBody ChangeProductQuantityRequest request
     );
-
-
-
 
 }
