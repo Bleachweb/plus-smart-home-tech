@@ -4,14 +4,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ru.yandex.practicum.dto.shoppingStore.enums.ProductCategory;
-import ru.yandex.practicum.dto.shoppingStore.enums.QuantityState;
-import ru.yandex.practicum.repository.ShoppingStoreRepository;
 import ru.yandex.practicum.dto.shoppingStore.ProductDto;
+import ru.yandex.practicum.dto.shoppingStore.enums.ProductCategory;
 import ru.yandex.practicum.dto.shoppingStore.enums.ProductState;
+import ru.yandex.practicum.dto.shoppingStore.enums.QuantityState;
 import ru.yandex.practicum.exception.NotFoundException;
 import ru.yandex.practicum.model.Product;
+import ru.yandex.practicum.repository.ShoppingStoreRepository;
 import ru.yandex.practicum.utils.Mapper;
+
 import java.util.UUID;
 
 @Service
@@ -26,8 +27,8 @@ public class ShoppingStoreServiceImpl implements ShoppingStoreService {
     }
 
     @Override
-    public ProductDto getProduct(String id) {
-        return Mapper.toDto(shoppingStoreRepository.findById(UUID.fromString(id))
+    public ProductDto getProduct(UUID id) {
+        return Mapper.toDto(shoppingStoreRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Продукт с id " + id + " не найден"))
         );
     }
@@ -39,25 +40,23 @@ public class ShoppingStoreServiceImpl implements ShoppingStoreService {
     }
 
     @Override
-    public void removeProductFromStore(String productId) {
-        UUID uuid = UUID.fromString(productId);
-        Product product = findProductById(uuid);
+    public void removeProductFromStore(UUID productId) {
+
+        Product product = findProductById(productId);
         product.setProductState(ProductState.DEACTIVATE);
         shoppingStoreRepository.save(product);
     }
 
     @Override
-    public void quantityState(String productId, QuantityState quantityState) {
-        UUID uuid = UUID.fromString(productId);
-        Product product = findProductById(uuid);
+    public void quantityState(UUID productId, QuantityState quantityState) {
+        Product product = findProductById(productId);
         product.setQuantityState(quantityState);
         shoppingStoreRepository.save(product);
     }
 
     @Override
     public ProductDto updateProduct(ProductDto productDto) {
-        UUID uuid = UUID.fromString(productDto.getProductId());
-        Product product = findProductById(uuid);
+        Product product = findProductById(productDto.getProductId());
         Mapper.updateProductFromDto(productDto, product);
         return Mapper.toDto(shoppingStoreRepository.save(product));
     }
