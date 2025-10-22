@@ -1,7 +1,7 @@
 package ru.yandex.practicum.utils;
 
-import ru.yandex.practicum.model.Payment;
 import ru.yandex.practicum.dto.payment.PaymentDto;
+import ru.yandex.practicum.model.Payment;
 
 public class Mapper {
 

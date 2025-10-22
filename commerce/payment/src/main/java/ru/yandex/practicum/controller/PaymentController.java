@@ -19,38 +19,35 @@ public class PaymentController implements PaymentApi {
 
     @Override
     public PaymentDto createPayment(OrderDto order) {
-        log.info("Create payment for order: {}", order);
         PaymentDto payment = paymentService.createPayment(order);
-        log.info("Payment created: {}", payment);
+        log.info("Payment created: {} for order: {}", payment, order);
         return payment;
     }
 
     @Override
     public Double totalCost(OrderDto orderDto) {
-        log.info("Total cost for order: {}", orderDto);
         Double cost = paymentService.totalCost(orderDto);
-        log.info("Total cost: {}", cost);
+        log.info("Total cost: {} for order: {}", cost, orderDto);
         return cost;
     }
 
     @Override
     public void refund(UUID paymentId) {
-        log.info("Refund paymentId: {}", paymentId);
+        log.debug("Refund paymentId: {}", paymentId);
         paymentService.refund(paymentId);
         log.info("Payment was refunded: {} ", paymentId);
     }
 
     @Override
     public Double productCost(OrderDto order) {
-        log.info("Product cost for order: {}", order);
         Double cost = paymentService.productCost(order);
-        log.info("Product cost is: {}", cost);
+        log.info("Product cost is: {} for order: {}", cost, order);
         return cost;
     }
 
     @Override
     public void failed(UUID paymentId) {
-        log.info("Request for payment failed: {}", paymentId);
+        log.debug("Request for payment failed: {}", paymentId);
         paymentService.failed(paymentId);
         log.info("Payment was failed: {}", paymentId);
     }

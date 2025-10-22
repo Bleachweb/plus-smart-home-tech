@@ -4,14 +4,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ru.yandex.practicum.dto.shoppingStore.enums.ProductCategory;
-import ru.yandex.practicum.dto.shoppingStore.enums.QuantityState;
-import ru.yandex.practicum.repository.ShoppingStoreRepository;
 import ru.yandex.practicum.dto.shoppingStore.ProductDto;
+import ru.yandex.practicum.dto.shoppingStore.enums.ProductCategory;
 import ru.yandex.practicum.dto.shoppingStore.enums.ProductState;
+import ru.yandex.practicum.dto.shoppingStore.enums.QuantityState;
 import ru.yandex.practicum.exception.NotFoundException;
 import ru.yandex.practicum.model.Product;
+import ru.yandex.practicum.repository.ShoppingStoreRepository;
 import ru.yandex.practicum.utils.Mapper;
+
 import java.util.UUID;
 
 @Service

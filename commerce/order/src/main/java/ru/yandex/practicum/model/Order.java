@@ -35,7 +35,7 @@ public class Order {
     @CollectionTable(name = "order_products", joinColumns = @JoinColumn(name = "order_id"))
     @MapKeyColumn(name = "product_id")
     @Column(name = "quantity")
-    Map<UUID, Integer> products =  new HashMap<>();
+    Map<UUID, Integer> products = new HashMap<>();
 
     UUID paymentId;
     UUID deliveryId;

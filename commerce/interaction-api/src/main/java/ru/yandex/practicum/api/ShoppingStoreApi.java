@@ -26,7 +26,7 @@ public interface ShoppingStoreApi {
 
     @PostMapping("/api/v1/shopping-store/quantityState")
     void quantityState(@RequestParam UUID productId,
-                       @RequestParam  QuantityState quantityState
+                       @RequestParam QuantityState quantityState
     );
 
     @PostMapping("/api/v1/shopping-store")

@@ -26,7 +26,7 @@ public interface ShoppingCartApi {
                                                    @RequestBody List<String> products
     );
 
-    @PostMapping ("/api/v1/shopping-cart/change-quantity")
+    @PostMapping("/api/v1/shopping-cart/change-quantity")
     ShoppingCartDto changeQuantityShoppingCart(@RequestParam String username,
                                                @RequestBody ChangeProductQuantityRequest request
     );

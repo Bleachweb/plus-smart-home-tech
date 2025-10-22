@@ -1,5 +1,6 @@
 package ru.yandex.practicum.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.clients.OrderClient;
@@ -15,11 +16,12 @@ import ru.yandex.practicum.utils.Mapper;
 
 import java.util.UUID;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
-public class DeliveryServiceImpl implements DeliveryService{
+public class DeliveryServiceImpl implements DeliveryService {
 
-    private static final Double  BASE_COST = 5.0;
+    private static final Double BASE_COST = 5.0;
 
     private final DeliveryRepository deliveryRepository;
 
@@ -92,7 +94,7 @@ public class DeliveryServiceImpl implements DeliveryService{
         if (country.contains("ADDRESS_1"))
             totalCost = BASE_COST * 1;
         else if (country.contains("ADDRESS_2"))
-            totalCost += BASE_COST*2;
+            totalCost += BASE_COST * 2;
 
         // Если в заказе есть признак хрупкости, умножаем сумму на 0.2 и складываем с полученным на предыдущем шаге итогом.
         if (orderDto.getFragile())
@@ -114,7 +116,7 @@ public class DeliveryServiceImpl implements DeliveryService{
         String toDeliveryStreet = delivery.getToAddress().getStreet();
         String fromDeliveryStreet = delivery.getFromAddress().getStreet();
 
-        if(!toDeliveryStreet.equals(fromDeliveryStreet))
+        if (!toDeliveryStreet.equals(fromDeliveryStreet))
             totalCost *= 1.2;
 
         return totalCost;

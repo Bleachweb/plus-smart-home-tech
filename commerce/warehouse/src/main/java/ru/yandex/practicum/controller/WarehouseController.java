@@ -1,8 +1,7 @@
-package ru.yandex.practicum;
+package ru.yandex.practicum.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.yandex.practicum.api.WarehouseApi;
 import ru.yandex.practicum.dto.shoppingCart.ShoppingCartDto;
@@ -21,7 +20,7 @@ public class WarehouseController implements WarehouseApi {
 
     @Override
     public void addNewProduct(NewProductInWarehouseRequest request) {
-        log.info("Add new product to warehouse request: {}", request);
+        log.debug("Add new product to warehouse request: {}", request);
         warehouseService.addNewProduct(request);
         log.info("Add new product to warehouse successful");
 
@@ -29,7 +28,7 @@ public class WarehouseController implements WarehouseApi {
 
     @Override
     public BookedProductsDto checkCart(ShoppingCartDto shoppingCartDto) {
-        log.info("Check cart for shopping cart request: {}", shoppingCartDto);
+        log.debug("Check cart for shopping cart request: {}", shoppingCartDto);
         BookedProductsDto bookedProductsDto = warehouseService.checkCart(shoppingCartDto);
         log.info("Check cart for shopping cart successful BookedProductsDto: {}", bookedProductsDto);
         return bookedProductsDto;
@@ -37,7 +36,7 @@ public class WarehouseController implements WarehouseApi {
 
     @Override
     public void addProduct(AddProductToWarehouseRequest request) {
-        log.info("Add product to warehouse request: {}", request);
+        log.debug("Add product to warehouse request: {}", request);
         warehouseService.addProduct(request);
         log.info("Add product to warehouse successful");
 
@@ -52,14 +51,14 @@ public class WarehouseController implements WarehouseApi {
 
     @Override
     public void shippedProducts(ShippedToDeliveryRequest request) {
-        log.info("Shipped to delivery request: {}", request);
+        log.debug("Shipped to delivery request: {}", request);
         warehouseService.shippedProducts(request);
         log.info("Shipped to delivery request successful");
     }
 
     @Override
     public void returnProducts(Map<UUID, Integer> products) {
-        log.info("Returned products map: {}", products);
+        log.debug("Returned products map: {}", products);
         warehouseService.returnProducts(products);
         log.info("Returned products map successful");
 
@@ -67,7 +66,7 @@ public class WarehouseController implements WarehouseApi {
 
     @Override
     public BookedProductsDto assemblyProducts(AssemblyProductsForOrderRequest request) {
-        log.info("Assembly product for order request: {}", request);
+        log.debug("Assembly product for order request: {}", request);
         BookedProductsDto bookedProductsDto = warehouseService.assemblyProducts(request);
         log.info("BookedProductsDto: {}", bookedProductsDto);
         return bookedProductsDto;

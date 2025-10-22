@@ -2,7 +2,6 @@ package ru.yandex.practicum;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.yandex.practicum.api.ShoppingCartApi;
 import ru.yandex.practicum.dto.shoppingCart.ChangeProductQuantityRequest;
@@ -22,7 +21,7 @@ public class ShoppingCartController implements ShoppingCartApi {
 
     @Override
     public ShoppingCartDto getShoppingCart(String username) {
-        log.info("Get shopping cart for {}", username);
+        log.debug("Get shopping cart for {}", username);
         ShoppingCartDto shoppingCart = shoppingCartService.getShoppingCart(username);
         log.info("Get shopping cart {}", shoppingCart);
         return shoppingCart;
@@ -30,7 +29,7 @@ public class ShoppingCartController implements ShoppingCartApi {
 
     @Override
     public ShoppingCartDto updateShoppingCart(String username, Map<UUID, Integer> products) {
-        log.info("Update shopping cart for {}. Updated products {}", username, products);
+        log.debug("Update shopping cart for {}. Updated products {}", username, products);
         ShoppingCartDto shoppingCart = shoppingCartService.updateShoppingCart(username, products);
         log.info("Update shopping cart {}", shoppingCart);
         return shoppingCart;
@@ -38,14 +37,14 @@ public class ShoppingCartController implements ShoppingCartApi {
 
     @Override
     public void deleteShoppingCart(String username) {
-        log.info("Delete shopping cart for {}", username);
+        log.debug("Delete shopping cart for {}", username);
         shoppingCartService.deleteShoppingCart(username);
         log.info("Shopping cart was deleted");
     }
 
     @Override
     public ShoppingCartDto removeProductsFromShoppingCart(String username, List<String> products) {
-        log.info("Remove products from cart for {}. Removed products {}", username, products);
+        log.debug("Remove products from cart for {}. Removed products {}", username, products);
         ShoppingCartDto shoppingCart = shoppingCartService.removeProductsFromShoppingCart(username, products);
         log.info("Shopping cart with removed products {}", shoppingCart);
         return shoppingCart;
@@ -53,7 +52,7 @@ public class ShoppingCartController implements ShoppingCartApi {
 
     @Override
     public ShoppingCartDto changeQuantityShoppingCart(String username, ChangeProductQuantityRequest request) {
-        log.info("Change quantity shopping cart for {}. Changed quantity shopping cart request {}", username, request);
+        log.debug("Change quantity shopping cart for {}. Changed quantity shopping cart request {}", username, request);
         ShoppingCartDto shoppingCart = shoppingCartService.changeQuantityShoppingCart(username, request);
         log.info("Changed quantity shopping cart {}", shoppingCart);
         return shoppingCart;

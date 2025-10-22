@@ -5,6 +5,6 @@ import ru.yandex.practicum.model.OrderBooking;
 
 import java.util.UUID;
 
-public  interface OrderBookingRepository extends JpaRepository<OrderBooking, UUID> {
+public interface OrderBookingRepository extends JpaRepository<OrderBooking, UUID> {
 
 }

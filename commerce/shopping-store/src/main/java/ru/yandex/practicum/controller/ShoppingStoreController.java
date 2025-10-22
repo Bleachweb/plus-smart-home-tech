@@ -22,8 +22,8 @@ public class ShoppingStoreController implements ShoppingStoreApi {
 
     @Override
     public Page<ProductDto> getProducts(ProductCategory category, Pageable pageable) {
-        log.info("getProducts for category {}", category);
-        log.info("getProducts for Pageable {}", pageable);
+        log.debug("getProducts for category {}", category);
+        log.debug("getProducts for Pageable {}", pageable);
         Page<ProductDto> products = shoppingStoreService.getProducts(category, pageable);
         log.info("getProducts returned {} products", products.getTotalElements());
         return products;
@@ -31,7 +31,7 @@ public class ShoppingStoreController implements ShoppingStoreApi {
 
     @Override
     public ProductDto getProduct(UUID id) {
-        log.info("getProduct with id {}", id);
+        log.debug("getProduct with id {}", id);
         ProductDto productDto = shoppingStoreService.getProduct(id);
         log.info("getProduct returned {}", productDto);
         return productDto;
@@ -39,7 +39,7 @@ public class ShoppingStoreController implements ShoppingStoreApi {
 
     @Override
     public ProductDto createProduct(ProductDto productDto) {
-        log.info("createProduct {}", productDto);
+        log.debug("createProduct {}", productDto);
         ProductDto newProductDto = shoppingStoreService.createProduct(productDto);
         log.info("createProduct returned {}", newProductDto);
         return newProductDto;
@@ -47,22 +47,22 @@ public class ShoppingStoreController implements ShoppingStoreApi {
 
     @Override
     public void removeProductFromStore(UUID productId) {
-        log.info("removeProductFromStore with id {}", productId);
+        log.debug("removeProductFromStore with id {}", productId);
         shoppingStoreService.removeProductFromStore(productId);
         log.info("removeProductFromStore was removed");
     }
 
     @Override
     public void quantityState(UUID productId, QuantityState quantityState) {
-        log.info("quantityState for productId {} ", productId);
-        log.info("quantityState {}", quantityState);
+        log.debug("quantityState for productId {} ", productId);
+        log.debug("quantityState {}", quantityState);
         shoppingStoreService.quantityState(productId, quantityState);
         log.info("quantityState was changed");
     }
 
     @Override
     public ProductDto updateProduct(ProductDto productDto) {
-        log.info("updateProduct {}", productDto);
+        log.debug("updateProduct {}", productDto);
         ProductDto updatedProductDto = shoppingStoreService.updateProduct(productDto);
         log.info("updateProduct returned {}", updatedProductDto);
         return updatedProductDto;

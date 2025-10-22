@@ -1,5 +1,6 @@
 package ru.yandex.practicum.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.clients.OrderClient;
@@ -12,9 +13,9 @@ import ru.yandex.practicum.model.Payment;
 import ru.yandex.practicum.repository.PaymentRepository;
 import ru.yandex.practicum.utils.Mapper;
 
-import java.util.Set;
 import java.util.UUID;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
 public class PaymentServiceImpl implements PaymentService {
@@ -72,13 +73,9 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public Double productCost(OrderDto order) {
-        Set<UUID> productIds = order.getProducts().keySet();
-        double productCost = 0.0;
-        for (UUID productId : productIds) {
-            productCost = Double.sum(productCost, shoppingStoreClient.getProduct(productId).getPrice());
-        }
-
-        return productCost;
+        return order.getProducts().keySet().stream()
+                .mapToDouble(productId -> shoppingStoreClient.getProduct(productId).getPrice())
+                .sum();
     }
 
     @Override

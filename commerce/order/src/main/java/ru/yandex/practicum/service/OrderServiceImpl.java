@@ -22,6 +22,7 @@ import ru.yandex.practicum.utils.Mapper;
 
 import java.util.*;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
@@ -55,8 +56,8 @@ public class OrderServiceImpl implements OrderService {
                 .build();
 
         // Сохранение стоимости продуктов
-        OrderDto orderDto =  Mapper.toOrderDto(order);
-        Double productPrice =  paymentClient.productCost(orderDto);
+        OrderDto orderDto = Mapper.toOrderDto(order);
+        Double productPrice = paymentClient.productCost(orderDto);
         order.setProductPrice(productPrice);
 
         //Предварительный подсчет заказа
@@ -105,7 +106,7 @@ public class OrderServiceImpl implements OrderService {
             if (productFromOrder.containsKey(productId)) {
                 int quantityFromOrder = productFromOrder.get(productId);
                 int quantityFromRequest = productFromRequest.get(productId);
-                if(quantityFromRequest > quantityFromOrder) {
+                if (quantityFromRequest > quantityFromOrder) {
                     moreInRequest.put(productId, quantityFromRequest);
                 }
             }
@@ -200,7 +201,7 @@ public class OrderServiceImpl implements OrderService {
         } else {
 
             //создаем предварительно доставку
-            DeliveryDto deliveryDto= DeliveryDto.builder()
+            DeliveryDto deliveryDto = DeliveryDto.builder()
                     .fromAddress(Mapper.toAddressDto(order.getOrderAddress()))
                     .toAddress(warehouseClient.getAddress())
                     .orderId(orderId)

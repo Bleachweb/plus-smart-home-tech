@@ -3,16 +3,16 @@ package ru.yandex.practicum.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.clients.OrderClient;
+import ru.yandex.practicum.dto.shoppingCart.ShoppingCartDto;
 import ru.yandex.practicum.dto.warehouse.*;
+import ru.yandex.practicum.exception.NotFoundException;
 import ru.yandex.practicum.exception.ProductInShoppingCartLowQuantityInWarehouse;
 import ru.yandex.practicum.model.OrderBooking;
 import ru.yandex.practicum.model.WarehouseInventory;
+import ru.yandex.practicum.model.WarehouseProduct;
 import ru.yandex.practicum.repository.OrderBookingRepository;
 import ru.yandex.practicum.repository.WarehouseInventoryRepository;
 import ru.yandex.practicum.repository.WarehouseProductRepository;
-import ru.yandex.practicum.dto.shoppingCart.ShoppingCartDto;
-import ru.yandex.practicum.exception.NotFoundException;
-import ru.yandex.practicum.model.WarehouseProduct;
 import ru.yandex.practicum.utils.WarehouseMapper;
 
 import java.security.SecureRandom;
@@ -30,7 +30,7 @@ public class WarehouseServiceImpl implements WarehouseService {
     private final OrderClient orderClient;
 
     private static final String[] ADDRESSES =
-            new String[] {"ADDRESS_1", "ADDRESS_2"};
+            new String[]{"ADDRESS_1", "ADDRESS_2"};
 
     private static final String CURRENT_ADDRESS =
             ADDRESSES[Random.from(new SecureRandom()).nextInt(0, 1)];
@@ -70,7 +70,7 @@ public class WarehouseServiceImpl implements WarehouseService {
         double deliveryVolume = getDeliveryVolume(foundProducts);
 
 
-        return  BookedProductsDto.builder()
+        return BookedProductsDto.builder()
                 .fragile(hasFragile)
                 .deliveryWeight(deliveryWeight)
                 .deliveryVolume(deliveryVolume)
